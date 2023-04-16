@@ -20,12 +20,24 @@ export const addArticleAC = (article) => {
 const initialState = { entries: [], isLoading: true };
 
 const articleReducer = (state = initialState, action) => {
+  
   switch (action.type) {
     case LOAD_ARTICLES:
       return { ...state, entries: [...action.articles] };
+    case ADD_ARTICLE:
+      const newArticle = {...action.article}
+      const newEntries = [...state.entries, newArticle];
+
+      return {
+        ...state,
+        entries: newEntries
+      }
+ 
+      
     default:
       return state;
   }
 };
 
 export default articleReducer;
+
